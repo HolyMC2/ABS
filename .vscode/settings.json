@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "xc.h": "c",
+        "htc.h": "c",
+        "pic16f877a_legacy.h": "c",
+        "pic.h": "c",
+        "pic16f877a.h": "c",
+        "hw_config.h": "c",
+        "math_operation.h": "c"
+    }
+}

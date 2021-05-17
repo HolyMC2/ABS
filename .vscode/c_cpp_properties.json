@@ -1,0 +1,62 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "macFrameworkPath": [],
+            "compilerPath": "C:/LegacyApp/VisualStudio2015/VC/bin/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Linux",
+            "includePath": [],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "compilerPath": "C:/LegacyApp/VisualStudio2015/VC/bin/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
+        },
+        {
+            "name": "Windows",
+            "includePath": [
+                "${workspaceFolder}",
+                "C:/Program Files/Microchip/xc8/v2.32/pic/include/*",
+                "C:/Program Files/Microchip/xc8/v2.32/pic/include/proc/*"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "C:/Program Files/Microchip/xc8/v2.32/pic/include/*",
+                    "C:/Program Files/Microchip/xc8/v2.32/pic/include/proc/*"
+                ],
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "cStandard": "c99",
+            "cppStandard": "c++17",
+            "compilerPath": "C:/Program Files/Microchip/xc8/v2.32/bin/xc8.exe",
+            "compilerArgs": [
+            ]
+        }
+    ],
+    "version": 4
+}
