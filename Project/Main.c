@@ -199,12 +199,6 @@ void main(void)
     Iniciar_Timer1();
 
     // SERVO
-    //configuramos la entrada del potenciometro 1
-    Configurar_Entrada_Analogica_1();
-    //configuramos la entrada del potenciometro 2
-    Configurar_Entrada_Analogica_2();
-    //configurar ADC
-    ConfigurarAdc();
     //configurar salida del motor 1
     Configurar_Salida_Motor_1();
     //configurar salida del motor 2
@@ -219,7 +213,16 @@ void main(void)
     //bucle infinito
     while(1)
     {
-        // hacer nada, porque trabajamos por interrupciones.
+        // si el sensor1 lee un 5% mas que el sensor 2, y el freno esta activo prender abs1 
+        if (RpmsSensor1 > (RpmsSensor2 * 1.05) | )
+        {
+            //activar servo1
+        }
+                
+        if (RpmsSensor2 > (RpmsSensor1 * 1.05) | )
+        {
+            //activar servo2
+        }
     }
     return;
 }
