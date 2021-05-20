@@ -6,7 +6,7 @@
 
 // 'C' source line config statements
 // 20Mhz FOSC
-#define _XTAL_FREQ 20000000
+#define _XTAL_FREQ 8000000
 
 // CONFIG
 #pragma config FOSC = HS // Oscillator Selection bits (HS oscillator)

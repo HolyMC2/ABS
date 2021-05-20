@@ -14,4 +14,5 @@ void Iniciar_Timer1(void);
 // prototipo de funcion
 void Detener_Timer1(void);
 
+
 #endif	/* SENSOR */

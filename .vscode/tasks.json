@@ -9,10 +9,10 @@
             "windows": {
                 "command": ".\\Build.cmd",
                 "args": [
-                    "16f887a",
+                    "16f877a",
                     "0",
                     "Project",
-                    "Main.c Hw_Config.c Math_Operation.c",
+                    "Main.c sensor.c",
                     "Proyecto_Perron"
                 ]
             }

@@ -28,20 +28,23 @@ void Configurar_Entradas_De_Interrupciones_PuertoB(void)
     INTCONbits.RBIE = 1;
     //habilitar interrupciones globales
     INTCONbits.GIE = 1;
+    //habilitar interrupciones de perifericos
+    INTCONbits.PEIE = 1;
 }
 
 void Configurar_Timer1(void)
 {
-    //configurar el timer 1 para que expire cada 100 ms
     // Timer1 Register:
     // T1CONbits.T1GINV = 1; // Timer1 gate is active-high (Timer1 counts when gate is high) *no aplica pic 16f877a
     // T1CONbits.TMR1GE = 0; // If TMR1ON = 0: This bit is ignored *no aplica pic 16f877a
     T1CONbits.T1CKPS0 = 1; // 11 = 1:8 Prescale Value
     T1CONbits.T1CKPS1 = 1; // 11 = 1:8 Prescale Value
     T1CONbits.T1OSCEN = 0; // LP oscillator is off
-    T1CONbits.TMR1CS = 0; // Internal clock (FOSC/4)
+    T1CONbits.T1SYNC = 0;
+    T1CONbits.TMR1CS = 1; // Internal clock (FOSC/4)
     T1CONbits.TMR1ON = 0; // Detener Timer 1
-    //precargar valor en los registros del timer 1 para que cuente 260ms
+
+    //configurar el timer 1 para que expire cada 100 ms  8bits = 256 -((delay*FOSC)/prescalar*4))
     TMR1H = 1; // Msb
     TMR1L = 31; // Lsb
 }
@@ -57,3 +60,4 @@ void Detener_Timer1(void)
     //detener cuenta del timer 1
     T1CONbits.TMR1ON = 0; 
 }
+
