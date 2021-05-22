@@ -1800,11 +1800,190 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 186 "Project\Main.c"
+# 19 "Project\Main.c"
+unsigned char ContadorSensor1 = 0;
+unsigned char ContadorSensor2 = 0;
+
+unsigned int TiempoInicioSensor1 = 0;
+unsigned int TiempoInicioSensor2 = 0;
+
+unsigned int TiempoFinSensor1 = 0;
+unsigned int TiempoFinSensor2 = 0;
+
+unsigned int RpmsSensor1 = 0;
+unsigned int RpmsSensor2 = 0;
+
+unsigned char PulsoEnAltoDetectadoSensor1 = 0;
+unsigned char PulsoEnAltoDetectadoSensor2 = 0;
+
+
+static unsigned int cuenta_timer0;
+
+static char angle;
+
+static unsigned int Counter_on[2];
+
+static unsigned char ServoControlado;
+static int servo_code[] = {0b00000001, 0b00000010};
+
+
+void __interrupt() SensorInterrupciones()
+{
+
+if ( INTCONbits.RBIF == 1 )
+{
+
+if ((PORTBbits.RB4 == 1 && PulsoEnAltoDetectadoSensor1 == 0) || (PORTBbits.RB4 == 0 && PulsoEnAltoDetectadoSensor1 == 1))
+{
+
+if (ContadorSensor1 == 0)
+{
+
+TiempoInicioSensor1 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+}
+
+
+if(PulsoEnAltoDetectadoSensor1 == 0)
+{
+PulsoEnAltoDetectadoSensor1 = 1;
+}
+else
+{
+PulsoEnAltoDetectadoSensor1 = 0;
+}
+
+
+ContadorSensor1++;
+
+if (ContadorSensor1 == ((unsigned char) 10))
+{
+
+TiempoFinSensor1 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+
+if (TiempoFinSensor1 > TiempoInicioSensor1)
+{
+
+RpmsSensor1 = (unsigned int)( ((float) 60) / ( ( (float)(TiempoFinSensor1 - TiempoInicioSensor1)) * ((unsigned char) 4) / ((unsigned long) 1000000)) );
+}
+else
+{
+
+RpmsSensor1 = (unsigned int)( ((float) 60) / ( ( (float)((((unsigned long) 65535) - TiempoInicioSensor1) + TiempoFinSensor1) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+}
+
+
+ContadorSensor1 = 0;
+}
+}
+
+if ((PORTBbits.RB5 == 1 && PulsoEnAltoDetectadoSensor2 == 0) || (PORTBbits.RB5 == 0 && PulsoEnAltoDetectadoSensor2 == 1))
+{
+
+if (ContadorSensor2 == 0)
+{
+
+TiempoInicioSensor2 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+}
+
+
+if(PulsoEnAltoDetectadoSensor2 == 0)
+{
+PulsoEnAltoDetectadoSensor2 = 1;
+}
+else
+{
+PulsoEnAltoDetectadoSensor2 = 0;
+}
+
+
+ContadorSensor2++;
+
+if (ContadorSensor2 == ((unsigned char) 10))
+{
+
+TiempoFinSensor2 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+
+if (TiempoFinSensor2 > TiempoInicioSensor2)
+{
+
+RpmsSensor2 = (unsigned int)( ((float) 60) / ( ( (float)(TiempoFinSensor2 - TiempoInicioSensor2) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+}
+else
+{
+
+RpmsSensor2 = (unsigned int)( ((float) 60) / ( ( (float)((((unsigned long) 65535) - TiempoInicioSensor2) + TiempoFinSensor2) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+}
+
+
+ContadorSensor2 = 0;
+}
+}
+
+
+INTCONbits.RBIF = 0;
+}
+
+}
+
+
+
+void interrupt timer0_isr()
+{
+if(TMR0IF == 1)
+{
+TMR0 = 248;
+TMR0IF = 0;
+cuenta_timer0++;
+}
+
+if(cuenta_timer0 >= 400)
+{
+cuenta_timer0 = 0;
+if (ServoControlado == 0)
+{
+ServoControlado = 1;
+}
+else
+{
+ServoControlado = 0;
+}
+}
+
+if (cuenta_timer0 <= (Counter_on[ServoControlado]))
+{
+PORTD = PORTD | servo_code[ServoControlado];
+}
+else
+{
+PORTD = PORTD & ~(servo_code[ServoControlado]);
+}
+
+}
+
+void servo_angle(char angle, unsigned char ServoControlado)
+{
+
+Counter_on[ServoControlado] = (angle * 0.0112)/0.05;
+}
+
 void main(void)
 {
 
-# 204
+
+
+Configurar_Entradas_De_Interrupciones_PuertoB();
+
+Configurar_Timer1();
+
+Iniciar_Timer1();
+
+
+
+Configurar_Salida_Motor_1();
+
+Configurar_Salida_Motor_2();
+
+Configurar_Timer0();
 ADCON1 = 0b00000111;
 CMCON = 7;
 TRISAbits.TRISA0 = 1;
@@ -1816,7 +1995,7 @@ TRISDbits.TRISD1 = 0;
 while(1)
 {
 
-if ( PORTAbits.RA0 == 0)
+if (RpmsSensor1 > (RpmsSensor2 * 1.1) &&PORTAbits.RA0 == 0)
 {
 
 RD0 = 1;
@@ -1826,7 +2005,7 @@ else
 RD0 = 0;
 }
 
-# 236
+# 234
 }
 return;
 }

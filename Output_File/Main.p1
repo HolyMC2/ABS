@@ -1,5 +1,48 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[t ~ __interrupt . k ]
+[t T4 __interrupt  ]
+"461 C:\Progra~1\Microchip\xc8\v2.32\pic\include\proc\pic16f877a.h
+[s S18 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S18 . RBIF INTF TMR0IF RBIE INTE TMR0IE PEIE GIE ]
+"471
+[s S19 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S19 . . T0IF . T0IE ]
+"460
+[u S17 `S18 1 `S19 1 ]
+[n S17 . . . ]
+"478
+[v _INTCONbits `VS17 ~T0 @X0 0 e@11 ]
+"223
+[s S8 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S8 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"222
+[u S7 `S8 1 ]
+[n S7 . . ]
+"234
+[v _PORTBbits `VS7 ~T0 @X0 0 e@6 ]
+"649
+[v _TMR1H `Vuc ~T0 @X0 0 e@15 ]
+"642
+[v _TMR1L `Vuc ~T0 @X0 0 e@14 ]
+"2882
+[v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
+"60
+[v _TMR0 `Vuc ~T0 @X0 0 e@1 ]
+"341
+[v _PORTD `Vuc ~T0 @X0 0 e@8 ]
 [p mainexit ]
+"6 Project\sensor.h
+[v _Configurar_Entradas_De_Interrupciones_PuertoB `(v ~T0 @X0 0 ef ]
+"9
+[v _Configurar_Timer1 `(v ~T0 @X0 0 ef ]
+"12
+[v _Iniciar_Timer1 `(v ~T0 @X0 0 ef ]
+"197 Project\Main.c
+[v _Configurar_Salida_Motor_1 `(i ~T0 @X0 0 ef ]
+"199
+[v _Configurar_Salida_Motor_2 `(i ~T0 @X0 0 ef ]
+"201
+[v _Configurar_Timer0 `(i ~T0 @X0 0 ef ]
 "2230 C:\Progra~1\Microchip\xc8\v2.32\pic\include\proc\pic16f877a.h
 [v _ADCON1 `Vuc ~T0 @X0 0 e@159 ]
 "2088
@@ -1078,73 +1121,501 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 127: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 128: extern __bank0 __bit __powerdown;
 [; ;pic.h: 129: extern __bank0 __bit __timeout;
-[v $root$_main `(v ~T0 @X0 0 e ]
-"186 Project\Main.c
-[v _main `(v ~T0 @X0 1 ef ]
-"187
+"19 Project\Main.c
+[v _ContadorSensor1 `uc ~T0 @X0 1 e ]
+[i _ContadorSensor1
+-> -> 0 `i `uc
+]
+[; ;Main.c: 19: unsigned char ContadorSensor1 = 0;
+"20
+[v _ContadorSensor2 `uc ~T0 @X0 1 e ]
+[i _ContadorSensor2
+-> -> 0 `i `uc
+]
+[; ;Main.c: 20: unsigned char ContadorSensor2 = 0;
+"22
+[v _TiempoInicioSensor1 `ui ~T0 @X0 1 e ]
+[i _TiempoInicioSensor1
+-> -> 0 `i `ui
+]
+[; ;Main.c: 22: unsigned int TiempoInicioSensor1 = 0;
+"23
+[v _TiempoInicioSensor2 `ui ~T0 @X0 1 e ]
+[i _TiempoInicioSensor2
+-> -> 0 `i `ui
+]
+[; ;Main.c: 23: unsigned int TiempoInicioSensor2 = 0;
+"25
+[v _TiempoFinSensor1 `ui ~T0 @X0 1 e ]
+[i _TiempoFinSensor1
+-> -> 0 `i `ui
+]
+[; ;Main.c: 25: unsigned int TiempoFinSensor1 = 0;
+"26
+[v _TiempoFinSensor2 `ui ~T0 @X0 1 e ]
+[i _TiempoFinSensor2
+-> -> 0 `i `ui
+]
+[; ;Main.c: 26: unsigned int TiempoFinSensor2 = 0;
+"28
+[v _RpmsSensor1 `ui ~T0 @X0 1 e ]
+[i _RpmsSensor1
+-> -> 0 `i `ui
+]
+[; ;Main.c: 28: unsigned int RpmsSensor1 = 0;
+"29
+[v _RpmsSensor2 `ui ~T0 @X0 1 e ]
+[i _RpmsSensor2
+-> -> 0 `i `ui
+]
+[; ;Main.c: 29: unsigned int RpmsSensor2 = 0;
+"31
+[v _PulsoEnAltoDetectadoSensor1 `uc ~T0 @X0 1 e ]
+[i _PulsoEnAltoDetectadoSensor1
+-> -> 0 `i `uc
+]
+[; ;Main.c: 31: unsigned char PulsoEnAltoDetectadoSensor1 = 0;
+"32
+[v _PulsoEnAltoDetectadoSensor2 `uc ~T0 @X0 1 e ]
+[i _PulsoEnAltoDetectadoSensor2
+-> -> 0 `i `uc
+]
+[; ;Main.c: 32: unsigned char PulsoEnAltoDetectadoSensor2 = 0;
+"35
+[v _cuenta_timer0 `ui ~T0 @X0 1 s ]
+[; ;Main.c: 35: static unsigned int cuenta_timer0;
+"37
+[v _angle `uc ~T0 @X0 1 s ]
+[; ;Main.c: 37: static char angle;
+"39
+[v _Counter_on `ui ~T0 @X0 -> 2 `i s ]
+[; ;Main.c: 39: static unsigned int Counter_on[2];
+"41
+[v _ServoControlado `uc ~T0 @X0 1 s ]
+[; ;Main.c: 41: static unsigned char ServoControlado;
+"42
+[v _servo_code `i ~T0 @X0 -> 0 `x s ]
+[i _servo_code
+:U ..
+-> 1 `i
+-> 2 `i
+..
+]
+[; ;Main.c: 42: static int servo_code[] = {0b00000001, 0b00000010};
+[v $root$_SensorInterrupciones `(v ~T0 @X0 0 e ]
+"45
+[v _SensorInterrupciones `(v ~T4 @X0 1 ef ]
+"46
 {
-[; ;Main.c: 186: void main(void)
-[; ;Main.c: 187: {
-[e :U _main ]
+[; ;Main.c: 45: void __interrupt() SensorInterrupciones()
+[; ;Main.c: 46: {
+[e :U _SensorInterrupciones ]
 [f ]
-[; ;Main.c: 204: ADCON1 = 0b00000111;
-"204
-[e = _ADCON1 -> -> 7 `i `uc ]
-[; ;Main.c: 205: CMCON = 7;
-"205
-[e = _CMCON -> -> 7 `i `uc ]
-[; ;Main.c: 206: TRISAbits.TRISA0 = 1;
-"206
-[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
-[; ;Main.c: 208: TRISDbits.TRISD0 = 0;
-"208
-[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
-[; ;Main.c: 209: TRISDbits.TRISD1 = 0;
-"209
-[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
-[; ;Main.c: 212: while(1)
-"212
-[e :U 97 ]
-[; ;Main.c: 213: {
-"213
+[; ;Main.c: 48: if ( INTCONbits.RBIF == 1 )
+"48
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 96  ]
+[; ;Main.c: 49: {
+"49
 {
-[; ;Main.c: 215: if ( PORTAbits.RA0 == 0)
-"215
-[e $ ! == -> . . _PORTAbits 0 0 `i -> 0 `i 99  ]
-[; ;Main.c: 216: {
-"216
+[; ;Main.c: 51: if ((PORTBbits.RB4 == 1 && PulsoEnAltoDetectadoSensor1 == 0) || (PORTBbits.RB4 == 0 && PulsoEnAltoDetectadoSensor1 == 1))
+"51
+[e $ ! || && == -> . . _PORTBbits 0 4 `i -> 1 `i == -> _PulsoEnAltoDetectadoSensor1 `i -> 0 `i && == -> . . _PORTBbits 0 4 `i -> 0 `i == -> _PulsoEnAltoDetectadoSensor1 `i -> 1 `i 97  ]
+[; ;Main.c: 52: {
+"52
 {
-[; ;Main.c: 218: RD0 = 1;
-"218
-[e = _RD0 -> -> 1 `i `b ]
-"219
+[; ;Main.c: 54: if (ContadorSensor1 == 0)
+"54
+[e $ ! == -> _ContadorSensor1 `i -> 0 `i 98  ]
+[; ;Main.c: 55: {
+"55
+{
+[; ;Main.c: 57: TiempoInicioSensor1 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+"57
+[e = _TiempoInicioSensor1 + << -> _TMR1H `ui -> 8 `i -> _TMR1L `ui ]
+"58
 }
-[; ;Main.c: 219: }
-[e $U 100  ]
-"220
-[e :U 99 ]
-[; ;Main.c: 220: else
-[; ;Main.c: 221: {
-"221
+[e :U 98 ]
+[; ;Main.c: 58: }
+[; ;Main.c: 61: if(PulsoEnAltoDetectadoSensor1 == 0)
+"61
+[e $ ! == -> _PulsoEnAltoDetectadoSensor1 `i -> 0 `i 99  ]
+[; ;Main.c: 62: {
+"62
 {
-[; ;Main.c: 222: RD0 = 0;
-"222
-[e = _RD0 -> -> 0 `i `b ]
-"223
+[; ;Main.c: 63: PulsoEnAltoDetectadoSensor1 = 1;
+"63
+[e = _PulsoEnAltoDetectadoSensor1 -> -> 1 `i `uc ]
+"64
+}
+[; ;Main.c: 64: }
+[e $U 100  ]
+"65
+[e :U 99 ]
+[; ;Main.c: 65: else
+[; ;Main.c: 66: {
+"66
+{
+[; ;Main.c: 67: PulsoEnAltoDetectadoSensor1 = 0;
+"67
+[e = _PulsoEnAltoDetectadoSensor1 -> -> 0 `i `uc ]
+"68
 }
 [e :U 100 ]
-"236
+[; ;Main.c: 68: }
+[; ;Main.c: 71: ContadorSensor1++;
+"71
+[e ++ _ContadorSensor1 -> -> 1 `i `uc ]
+[; ;Main.c: 73: if (ContadorSensor1 == ((unsigned char) 10))
+"73
+[e $ ! == -> _ContadorSensor1 `i -> -> -> 10 `i `uc `i 101  ]
+[; ;Main.c: 74: {
+"74
+{
+[; ;Main.c: 76: TiempoFinSensor1 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+"76
+[e = _TiempoFinSensor1 + << -> _TMR1H `ui -> 8 `i -> _TMR1L `ui ]
+[; ;Main.c: 78: if (TiempoFinSensor1 > TiempoInicioSensor1)
+"78
+[e $ ! > _TiempoFinSensor1 _TiempoInicioSensor1 102  ]
+[; ;Main.c: 79: {
+"79
+{
+[; ;Main.c: 81: RpmsSensor1 = (unsigned int)( ((float) 60) / ( ( (float)(TiempoFinSensor1 - TiempoInicioSensor1)) * ((unsigned char) 4) / ((unsigned long) 1000000)) );
+"81
+[e = _RpmsSensor1 -> / -> -> 60 `i `f / * -> - _TiempoFinSensor1 _TiempoInicioSensor1 `f -> -> -> 4 `i `uc `f -> -> -> 1000000 `l `ul `f `ui ]
+"82
+}
+[; ;Main.c: 82: }
+[e $U 103  ]
+"83
+[e :U 102 ]
+[; ;Main.c: 83: else
+[; ;Main.c: 84: {
+"84
+{
+[; ;Main.c: 86: RpmsSensor1 = (unsigned int)( ((float) 60) / ( ( (float)((((unsigned long) 65535) - TiempoInicioSensor1) + TiempoFinSensor1) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+"86
+[e = _RpmsSensor1 -> / -> -> 60 `i `f / * -> + - -> -> 65535 `l `ul -> _TiempoInicioSensor1 `ul -> _TiempoFinSensor1 `ul `f -> -> -> 4 `i `uc `f -> -> -> 1000000 `l `ul `f `ui ]
+"87
+}
+[e :U 103 ]
+[; ;Main.c: 87: }
+[; ;Main.c: 90: ContadorSensor1 = 0;
+"90
+[e = _ContadorSensor1 -> -> 0 `i `uc ]
+"91
+}
+[e :U 101 ]
+"92
+}
+[e :U 97 ]
+[; ;Main.c: 91: }
+[; ;Main.c: 92: }
+[; ;Main.c: 94: if ((PORTBbits.RB5 == 1 && PulsoEnAltoDetectadoSensor2 == 0) || (PORTBbits.RB5 == 0 && PulsoEnAltoDetectadoSensor2 == 1))
+"94
+[e $ ! || && == -> . . _PORTBbits 0 5 `i -> 1 `i == -> _PulsoEnAltoDetectadoSensor2 `i -> 0 `i && == -> . . _PORTBbits 0 5 `i -> 0 `i == -> _PulsoEnAltoDetectadoSensor2 `i -> 1 `i 104  ]
+[; ;Main.c: 95: {
+"95
+{
+[; ;Main.c: 97: if (ContadorSensor2 == 0)
+"97
+[e $ ! == -> _ContadorSensor2 `i -> 0 `i 105  ]
+[; ;Main.c: 98: {
+"98
+{
+[; ;Main.c: 100: TiempoInicioSensor2 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+"100
+[e = _TiempoInicioSensor2 + << -> _TMR1H `ui -> 8 `i -> _TMR1L `ui ]
+"101
+}
+[e :U 105 ]
+[; ;Main.c: 101: }
+[; ;Main.c: 104: if(PulsoEnAltoDetectadoSensor2 == 0)
+"104
+[e $ ! == -> _PulsoEnAltoDetectadoSensor2 `i -> 0 `i 106  ]
+[; ;Main.c: 105: {
+"105
+{
+[; ;Main.c: 106: PulsoEnAltoDetectadoSensor2 = 1;
+"106
+[e = _PulsoEnAltoDetectadoSensor2 -> -> 1 `i `uc ]
+"107
+}
+[; ;Main.c: 107: }
+[e $U 107  ]
+"108
+[e :U 106 ]
+[; ;Main.c: 108: else
+[; ;Main.c: 109: {
+"109
+{
+[; ;Main.c: 110: PulsoEnAltoDetectadoSensor2 = 0;
+"110
+[e = _PulsoEnAltoDetectadoSensor2 -> -> 0 `i `uc ]
+"111
+}
+[e :U 107 ]
+[; ;Main.c: 111: }
+[; ;Main.c: 114: ContadorSensor2++;
+"114
+[e ++ _ContadorSensor2 -> -> 1 `i `uc ]
+[; ;Main.c: 116: if (ContadorSensor2 == ((unsigned char) 10))
+"116
+[e $ ! == -> _ContadorSensor2 `i -> -> -> 10 `i `uc `i 108  ]
+[; ;Main.c: 117: {
+"117
+{
+[; ;Main.c: 119: TiempoFinSensor2 = ( ((unsigned int)TMR1H) << 8) + TMR1L;
+"119
+[e = _TiempoFinSensor2 + << -> _TMR1H `ui -> 8 `i -> _TMR1L `ui ]
+[; ;Main.c: 121: if (TiempoFinSensor2 > TiempoInicioSensor2)
+"121
+[e $ ! > _TiempoFinSensor2 _TiempoInicioSensor2 109  ]
+[; ;Main.c: 122: {
+"122
+{
+[; ;Main.c: 124: RpmsSensor2 = (unsigned int)( ((float) 60) / ( ( (float)(TiempoFinSensor2 - TiempoInicioSensor2) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+"124
+[e = _RpmsSensor2 -> / -> -> 60 `i `f / * -> - _TiempoFinSensor2 _TiempoInicioSensor2 `f -> -> -> 4 `i `uc `f -> -> -> 1000000 `l `ul `f `ui ]
+"125
+}
+[; ;Main.c: 125: }
+[e $U 110  ]
+"126
+[e :U 109 ]
+[; ;Main.c: 126: else
+[; ;Main.c: 127: {
+"127
+{
+[; ;Main.c: 129: RpmsSensor2 = (unsigned int)( ((float) 60) / ( ( (float)((((unsigned long) 65535) - TiempoInicioSensor2) + TiempoFinSensor2) * ((unsigned char) 4)) / ((unsigned long) 1000000)) );
+"129
+[e = _RpmsSensor2 -> / -> -> 60 `i `f / * -> + - -> -> 65535 `l `ul -> _TiempoInicioSensor2 `ul -> _TiempoFinSensor2 `ul `f -> -> -> 4 `i `uc `f -> -> -> 1000000 `l `ul `f `ui ]
+"130
+}
+[e :U 110 ]
+[; ;Main.c: 130: }
+[; ;Main.c: 133: ContadorSensor2 = 0;
+"133
+[e = _ContadorSensor2 -> -> 0 `i `uc ]
+"134
+}
+[e :U 108 ]
+"135
+}
+[e :U 104 ]
+[; ;Main.c: 134: }
+[; ;Main.c: 135: }
+[; ;Main.c: 138: INTCONbits.RBIF = 0;
+"138
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"139
 }
 [e :U 96 ]
-"212
-[e $U 97  ]
-[e :U 98 ]
-[; ;Main.c: 223: }
-[; ;Main.c: 236: }
-[; ;Main.c: 237: return;
-"237
-[e $UE 95  ]
-[; ;Main.c: 238: }
-"238
+[; ;Main.c: 139: }
+[; ;Main.c: 141: }
+"141
 [e :UE 95 ]
+}
+[v $root$_timer0_isr `(v ~T0 @X0 0 e ]
+[v F932 `(v ~T0 @X0 1 tf ]
+"145
+[v _timer0_isr `IF932 ~T0 @X0 1 e ]
+"146
+{
+[; ;Main.c: 145: void interrupt timer0_isr()
+[; ;Main.c: 146: {
+[e :U _timer0_isr ]
+[f ]
+[; ;Main.c: 147: if(TMR0IF == 1)
+"147
+[e $ ! == -> _TMR0IF `i -> 1 `i 112  ]
+[; ;Main.c: 148: {
+"148
+{
+[; ;Main.c: 149: TMR0 = 248;
+"149
+[e = _TMR0 -> -> 248 `i `uc ]
+[; ;Main.c: 150: TMR0IF = 0;
+"150
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;Main.c: 151: cuenta_timer0++;
+"151
+[e ++ _cuenta_timer0 -> -> 1 `i `ui ]
+"152
+}
+[e :U 112 ]
+[; ;Main.c: 152: }
+[; ;Main.c: 154: if(cuenta_timer0 >= 400)
+"154
+[e $ ! >= _cuenta_timer0 -> -> 400 `i `ui 113  ]
+[; ;Main.c: 155: {
+"155
+{
+[; ;Main.c: 156: cuenta_timer0 = 0;
+"156
+[e = _cuenta_timer0 -> -> 0 `i `ui ]
+[; ;Main.c: 157: if (ServoControlado == 0)
+"157
+[e $ ! == -> _ServoControlado `i -> 0 `i 114  ]
+[; ;Main.c: 158: {
+"158
+{
+[; ;Main.c: 159: ServoControlado = 1;
+"159
+[e = _ServoControlado -> -> 1 `i `uc ]
+"160
+}
+[; ;Main.c: 160: }
+[e $U 115  ]
+"161
+[e :U 114 ]
+[; ;Main.c: 161: else
+[; ;Main.c: 162: {
+"162
+{
+[; ;Main.c: 163: ServoControlado = 0;
+"163
+[e = _ServoControlado -> -> 0 `i `uc ]
+"164
+}
+[e :U 115 ]
+"165
+}
+[e :U 113 ]
+[; ;Main.c: 164: }
+[; ;Main.c: 165: }
+[; ;Main.c: 167: if (cuenta_timer0 <= (Counter_on[ServoControlado]))
+"167
+[e $ ! <= _cuenta_timer0 *U + &U _Counter_on * -> _ServoControlado `ux -> -> # *U &U _Counter_on `ui `ux 116  ]
+[; ;Main.c: 168: {
+"168
+{
+[; ;Main.c: 169: PORTD = PORTD | servo_code[ServoControlado];
+"169
+[e = _PORTD -> | -> _PORTD `i *U + &U _servo_code * -> _ServoControlado `ux -> -> # *U &U _servo_code `ui `ux `uc ]
+"170
+}
+[; ;Main.c: 170: }
+[e $U 117  ]
+"171
+[e :U 116 ]
+[; ;Main.c: 171: else
+[; ;Main.c: 172: {
+"172
+{
+[; ;Main.c: 173: PORTD = PORTD & ~(servo_code[ServoControlado]);
+"173
+[e = _PORTD -> & -> _PORTD `i ~ *U + &U _servo_code * -> _ServoControlado `ux -> -> # *U &U _servo_code `ui `ux `uc ]
+"174
+}
+[e :U 117 ]
+[; ;Main.c: 174: }
+[; ;Main.c: 176: }
+"176
+[e :UE 111 ]
+}
+"178
+[v _servo_angle `(v ~T0 @X0 1 ef2`uc`uc ]
+"179
+{
+[; ;Main.c: 178: void servo_angle(char angle, unsigned char ServoControlado)
+[; ;Main.c: 179: {
+[e :U _servo_angle ]
+[v _angle `uc ~T0 @X0 1 r1 ]
+[v _ServoControlado `uc ~T0 @X0 1 r2 ]
+[f ]
+[; ;Main.c: 181: Counter_on[ServoControlado] = (angle * 0.0112)/0.05;
+"181
+[e = *U + &U _Counter_on * -> _ServoControlado `ux -> -> # *U &U _Counter_on `ui `ux -> / * -> _angle `d .0.0112 .0.05 `ui ]
+[; ;Main.c: 182: }
+"182
+[e :UE 118 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"184
+[v _main `(v ~T0 @X0 1 ef ]
+"185
+{
+[; ;Main.c: 184: void main(void)
+[; ;Main.c: 185: {
+[e :U _main ]
+[f ]
+[; ;Main.c: 189: Configurar_Entradas_De_Interrupciones_PuertoB();
+"189
+[e ( _Configurar_Entradas_De_Interrupciones_PuertoB ..  ]
+[; ;Main.c: 191: Configurar_Timer1();
+"191
+[e ( _Configurar_Timer1 ..  ]
+[; ;Main.c: 193: Iniciar_Timer1();
+"193
+[e ( _Iniciar_Timer1 ..  ]
+[; ;Main.c: 197: Configurar_Salida_Motor_1();
+"197
+[e ( _Configurar_Salida_Motor_1 ..  ]
+[; ;Main.c: 199: Configurar_Salida_Motor_2();
+"199
+[e ( _Configurar_Salida_Motor_2 ..  ]
+[; ;Main.c: 201: Configurar_Timer0();
+"201
+[e ( _Configurar_Timer0 ..  ]
+[; ;Main.c: 202: ADCON1 = 0b00000111;
+"202
+[e = _ADCON1 -> -> 7 `i `uc ]
+[; ;Main.c: 203: CMCON = 7;
+"203
+[e = _CMCON -> -> 7 `i `uc ]
+[; ;Main.c: 204: TRISAbits.TRISA0 = 1;
+"204
+[e = . . _TRISAbits 0 0 -> -> 1 `i `uc ]
+[; ;Main.c: 206: TRISDbits.TRISD0 = 0;
+"206
+[e = . . _TRISDbits 0 0 -> -> 0 `i `uc ]
+[; ;Main.c: 207: TRISDbits.TRISD1 = 0;
+"207
+[e = . . _TRISDbits 0 1 -> -> 0 `i `uc ]
+[; ;Main.c: 210: while(1)
+"210
+[e :U 121 ]
+[; ;Main.c: 211: {
+"211
+{
+[; ;Main.c: 213: if (RpmsSensor1 > (RpmsSensor2 * 1.1) &&PORTAbits.RA0 == 0)
+"213
+[e $ ! && > -> _RpmsSensor1 `d * -> _RpmsSensor2 `d .1.1 == -> . . _PORTAbits 0 0 `i -> 0 `i 123  ]
+[; ;Main.c: 214: {
+"214
+{
+[; ;Main.c: 216: RD0 = 1;
+"216
+[e = _RD0 -> -> 1 `i `b ]
+"217
+}
+[; ;Main.c: 217: }
+[e $U 124  ]
+"218
+[e :U 123 ]
+[; ;Main.c: 218: else
+[; ;Main.c: 219: {
+"219
+{
+[; ;Main.c: 220: RD0 = 0;
+"220
+[e = _RD0 -> -> 0 `i `b ]
+"221
+}
+[e :U 124 ]
+"234
+}
+[e :U 120 ]
+"210
+[e $U 121  ]
+[e :U 122 ]
+[; ;Main.c: 221: }
+[; ;Main.c: 234: }
+[; ;Main.c: 235: return;
+"235
+[e $UE 119  ]
+[; ;Main.c: 236: }
+"236
+[e :UE 119 ]
 }

@@ -1140,12 +1140,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;sensor.c: 45: T1CONbits.TMR1ON = 0;
 "45
 [e = . . _T1CONbits 0 0 -> -> 0 `i `uc ]
-[; ;sensor.c: 48: TMR1H = 1;
+[; ;sensor.c: 48: TMR1H = 0x0B;
 "48
-[e = _TMR1H -> -> 1 `i `uc ]
-[; ;sensor.c: 49: TMR1L = 31;
+[e = _TMR1H -> -> 11 `i `uc ]
+[; ;sensor.c: 49: TMR1L = 0xDC;
 "49
-[e = _TMR1L -> -> 31 `i `uc ]
+[e = _TMR1L -> -> 220 `i `uc ]
 [; ;sensor.c: 50: }
 "50
 [e :UE 96 ]

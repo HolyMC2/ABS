@@ -34,8 +34,8 @@ void Configurar_Timer0(void)
     OPTION_REG = 0b00000100;  // Timer0 with external freq and 32 as prescalar // Also Enables PULL UPs
     TMR0=248;       // Load the time value for 0.0001s; delayValue can be between 0-256 only
     TMR0IE=1;       //Enable timer interrupt bit in PIE1 register
-    GIE=1;          //Enable Global Interrupt
-    PEIE=1;         //Enable the Peripheral Interrupt
+    // GIE=1;          //Enable Global Interrupt
+    // PEIE=1;         //Enable the Peripheral Interrupt
     /***********______***********/      
 }
 

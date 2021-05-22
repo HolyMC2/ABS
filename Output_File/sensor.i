@@ -1832,8 +1832,8 @@ T1CONbits.TMR1CS = 1;
 T1CONbits.TMR1ON = 0;
 
 
-TMR1H = 1;
-TMR1L = 31;
+TMR1H = 0x0B;
+TMR1L = 0xDC;
 }
 
 void Iniciar_Timer1(void)

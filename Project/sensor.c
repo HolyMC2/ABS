@@ -45,8 +45,8 @@ void Configurar_Timer1(void)
     T1CONbits.TMR1ON = 0; // Detener Timer 1
 
     //configurar el timer 1 para que expire cada 100 ms  8bits = 256 -((delay*FOSC)/prescalar*4))
-    TMR1H = 1; // Msb
-    TMR1L = 31; // Lsb
+    TMR1H = 0x0B; // Msb
+    TMR1L = 0xDC; // Lsb
 }
 
 void Iniciar_Timer1(void)
